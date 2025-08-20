@@ -1,0 +1,14 @@
+{
+  "name": "Nhlavutelo Ya Yesu",
+  "short_name": "Nhlavutelo",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#4f2b16",
+  "background_color": "#ffffff",
+  "description": "Capítulos de Revelação em áudio-Tsonga, favoritos, busca e modo offline.",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "cross1.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
