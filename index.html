@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nhlavutelo Ya Yesu</title>
+  <meta name="theme-color" content="#4f2b16" />
+
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <!-- Ícone (atualize com seu PNG) -->
+  <link rel="icon" type="image/png" href="cross1.png" />
+
+  <!-- CSS de terceiros -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" rel="stylesheet">
+
+  <!-- Estilos do tema -->
+  <link href="styles.css" rel="stylesheet" />
+</head>
+<body class="bg-body">
+
+  <!-- Navbar fixa -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <button class="btn btn-outline-primary me-2" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <a class="navbar-brand fw-bold text-primary" href="#">
+        <img src="cross1.png" alt="" width="26" height="26" class="me-2">
+        Nhlavutelo Ya Yesu
+      </a>
+
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <button id="btnSearchOpen" class="btn btn-outline-secondary" title="Pesquisar">
+          <i class="bi bi-search"></i>
+        </button>
+        <button id="btnFavoritosView" class="btn btn-outline-warning" title="Favoritos">
+          <i class="bi bi-star"></i>
+        </button>
+        <button id="btnTheme" class="btn btn-outline-dark" title="Modo escuro/claro">
+          <i class="bi bi-moon-stars"></i>
+        </button>
+        <button id="btnInstall" class="btn btn-primary d-none" title="Instalar app">Instalar</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Offcanvas menu -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel">
+    <div class="offcanvas-header bg-primary text-white">
+      <div class="d-flex align-items-center gap-3">
+        <img src="cross1.png" alt="Logo" class="rounded-circle bg-white" width="52" height="52">
+        <div>
+          <h5 class="offcanvas-title mb-0" id="menuLateralLabel">Nhlavutelo Ya Yohane</h5>
+          <small>Uma biblioteca viva da comunidade</small>
+        </div>
+      </div>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="mb-3 text-center">
+        <lottie-player src="meu-lottie.json"
+        background="transparent" speed="1" style="width: 220px; height: 120px; margin: 0 auto;" loop autoplay></lottie-player>
+      </div>
+      <ul class="list-unstyled">
+        <li><a href="#" class="menu-link d-block py-2"><i class="bi bi-house-door me-2 text-primary"></i>Home</a></li>
+        <li><a href="#" id="menuTodos" class="menu-link d-block py-2"><i class="bi bi-collection-play me-2 text-primary"></i>Todos os capítulos</a></li>
+        <li><a href="#" id="menuFavoritos" class="menu-link d-block py-2"><i class="bi bi-star-fill me-2 text-warning"></i>Favoritos</a></li>
+        <li><a href="https://wa.me/message/ISKUMK5GLRTXD1" target="_blank" class="menu-link d-block py-2"><i class="bi bi-whatsapp me-2 text-success"></i>Contato</a></li>
+      </ul>
+
+      <div class="mt-4 p-3 rounded-3 bg-light border">
+        <h6 class="mb-2">Doe 💖</h6>
+        <div class="d-flex flex-column gap-2">
+          <div class="badge bg-success-subtle text-success p-2 border"><strong>PayPal:</strong> petrossemanhica70@gmail.com</div>
+          <div class="badge bg-success-subtle text-success p-2 border"><strong>M-Pesa:</strong> +258 85 349 4204</div>
+        </div>
+      </div>
+
+      <div class="text-center text-muted small mt-3">
+        Criado por: <strong>Petrosse Manhiça</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero position-relative overflow-hidden">
+    <img src="fundo1.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay"></div>
+    <div class="container position-relative text-center text-white py-5">
+      <h1 class="display-5 fw-bold animate__animated animate__fadeInDown"></h1>
+      <p class="lead animate__animated animate__fadeInUp animate__delay-1s">
+        <i><b><b><b>Vona, ndzi yimile enyangweni, ndza gongondza. Loko un'wana a twa rito ra mina a pfalula nyangwa, ndzi ta nghena endlwini ya yena ndzi dya na yena, na yena ú ta dya na mina.</b></b></b></i>
+      </p>
+   <div class="d-flex justify-content-center gap-2 mt-3">
+  <a href="#destaques" class="btn btn-ouvir">Ouvir agora</a>
+  <a href="#lista" class="btn btn-explorar">Explorar capítulos</a>
+</div>
+    </div>
+  </header>
+
+  <!-- Barra de busca -->
+  <section class="container my-4">
+    <div class="position-relative">
+      <input id="campoBusca" type="search" class="form-control form-control-lg rounded-pill ps-5" placeholder="Buscar por capítulo...">
+      <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+    </div>
+    <div id="sugestoes" class="list-group shadow-sm mt-2 d-none"></div>
+  </section>
+
+  <!-- Destaques com Swiper -->
+  <section id="destaques" class="container my-5">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="h4 mb-0">Destaques</h2>
+    </div>
+    <div class="swiper destaque-swiper" data-aos="fade-up">
+      <div class="swiper-wrapper" id="swiperDestaques">
+        <!-- Cartões injetados por JS -->
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- Lista completa -->
+  <section id="lista" class="container my-5">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="h4 mb-0">Capítulos</h2>
+      <div class="btn-group" role="group">
+        <button class="btn btn-outline-secondary btn-sm" data-filter="all">Todos</button>
+        <button class="btn btn-outline-secondary btn-sm" data-filter="favoritos">Favoritos</button>
+        <button class="btn btn-outline-secondary btn-sm" data-filter="recentes">Recentes</button>
+      </div>
+    </div>
+    <div id="gridCapitulos" class="row g-3">
+      <!-- Cards injetados por JS -->
+    </div>
+  </section>
+<!-- Botão flutuante de comentários -->
+<button id="btnComments" class="btn btn-light shadow comments-fab" title="Comentários">
+  <i class="bi bi-chat-dots-fill"></i>
+</button>
+
+<!-- Painel lateral de comentários -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="commentsPanel" aria-labelledby="commentsPanelLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="commentsPanelLabel">Comentários</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column">
+    <div id="commentsMeta" class="small text-muted mb-2"></div>
+    <div id="commentsList" class="list-group flex-grow-1 overflow-auto mb-3"></div>
+  <form id="commentForm">
+<!-- Botão para mostrar/esconder formulário -->
+<button class="btn btn-outline-secondary w-100 mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#commentFormCollapse" aria-expanded="false" aria-controls="commentFormCollapse">
+  Deixar um comentário
+</button>
+
+<!-- Formulário de comentário (inicialmente escondido) -->
+<div class="collapse" id="commentFormCollapse">
+  <form id="commentForm">
+    <div class="mb-3">
+      <label for="commentName" class="form-label small mb-1">Seu nome</label>
+      <input type="text" id="commentName" class="form-control form-control-sm" placeholder="Ex.: Maria" required>
+    </div>
+    <div class="mb-3">
+      <label for="commentText" class="form-label small mb-1">Comentário</label>
+      <textarea id="commentText" class="form-control" rows="3" placeholder="Escreva algo..." required></textarea>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+  <!-- Player fixo -->
+  <div class="player shadow-lg">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center gap-3">
+        <button id="btnPrev" class="btn btn-outline-secondary btn-sm"><i class="bi bi-skip-backward-fill"></i></button>
+        <button id="btnPlay" class="btn btn-primary btn-lg rounded-circle"><i class="bi bi-play-fill"></i></button>
+        <button id="btnNext" class="btn btn-outline-secondary btn-sm"><i class="bi bi-skip-forward-fill"></i></button>
+      </div>
+      <div class="player-info flex-grow-1 mx-3">
+        <div id="playerTitulo" class="fw-semibold text-truncate">Selecione um capítulo</div>
+        <div class="small text-muted" id="playerEstado">Parado</div>
+        <input id="playerSeek" type="range" min="0" max="100" value="0" class="form-range">
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <span id="tempoAtual" class="small text-muted">00:00</span>
+        <span id="tempoTotal" class="small text-muted">00:00</span>
+        <button id="btnFavAtual" class="btn btn-outline-warning"><i class="bi bi-star"></i></button>
+        <button id="btnMute" class="btn btn-outline-secondary"><i class="bi bi-volume-up"></i></button>
+      </div>
+    </div>
+    <audio id="audio" preload="metadata"></audio>
+  </div>
+
+  <!-- Toasts -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
+    <div id="toast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div id="toastMsg" class="toast-body">Olá!</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="container my-5 text-center text-muted">
+    <small>© <span id="ano"></span> Nhlavutelo Ya Yesu — Criado por <strong>Petrosse Manhiça</strong></small>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<!-- Coloque este script NO FIM do body -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+import { 
+  getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot 
+} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+// 🔹 Configuração Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyCe_GvsR3Qwvhh7ZY6H09zB3OpiWsEOK2w",
+  authDomain: "nhlavutelo-comments.firebaseapp.com",
+  projectId: "nhlavutelo-comments",
+  storageBucket: "nhlavutelo-comments.firebasestorage.app",
+  messagingSenderId: "141007051917",
+  appId: "1:141007051917:web:0d800155ad7aaf34ea96c4",
+  measurementId: "G-FE6M3NR95L"
+};
+
+// 🔹 Inicializa Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+// 🔹 Autenticação anônima
+signInAnonymously(auth)
+  .then(() => console.log("✅ Autenticado anonimamente"))
+  .catch(err => console.error("Erro ao autenticar:", err));
+
+let unsubscribeComments = null;
+
+// 🔹 Elementos
+const commentsPanelEl = document.getElementById('commentsPanel');
+const commentsPanel = new bootstrap.Offcanvas(commentsPanelEl);
+const commentsList = document.getElementById('commentsList');
+
+// 🔹 Função para carregar comentários
+function subscribeToComments() {
+  if (unsubscribeComments) unsubscribeComments();
+
+  const q = query(collection(db, 'comments'), orderBy('ts', 'desc'));
+  unsubscribeComments = onSnapshot(q, (snapshot) => {
+    commentsList.innerHTML = '';
+    if (snapshot.empty) {
+      commentsList.innerHTML = `<div class="text-center text-muted small">Nenhum comentário ainda.</div>`;
+      return;
+    }
+
+    snapshot.forEach((doc, i) => {
+      const data = doc.data();
+      const ts = data.ts?.toDate ? data.ts.toDate() : new Date();
+      const formattedDate = new Intl.DateTimeFormat('pt-PT', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      }).format(ts);
+
+      const item = document.createElement('div');
+      item.className = 'comment-card';
+      item.innerHTML = `
+        <strong>${data.name}</strong>
+        <small class="text-muted d-block mb-1">${formattedDate}</small>
+        <p class="mb-0">${data.text}</p>
+      `;
+      commentsList.appendChild(item);
+
+      // animação suave
+      setTimeout(() => item.classList.add('show'), i * 80);
+    });
+  });
+}
+
+// 🔹 Botão flutuante abre painel
+document.getElementById('btnComments').addEventListener('click', () => {
+  subscribeToComments();
+  commentsPanel.show();
+});
+
+// 🔹 Envio de comentário
+document.getElementById('commentForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('commentName').value.trim();
+  const text = document.getElementById('commentText').value.trim();
+  if (!name || !text) return;
+
+  try {
+    await addDoc(collection(db, 'comments'), {
+      name,
+      text,
+      chapter: window.state?.atual || null,
+      ts: serverTimestamp()
+    });
+
+    document.getElementById('commentText').value = '';
+    mostrarMensagem("Comentário enviado com sucesso!", "success");
+  } catch (err) {
+    console.error(err);
+    mostrarMensagem("Erro ao enviar comentário: " + err.message, "danger");
+  }
+});
+
+// 🔹 Feedback Bootstrap
+function mostrarMensagem(msg, tipo = "info") {
+  const alerta = document.createElement("div");
+  alerta.className = `alert alert-${tipo} py-1 my-2`;
+  alerta.textContent = msg;
+  document.querySelector("#commentsPanel .offcanvas-body").prepend(alerta);
+  setTimeout(() => alerta.remove(), 3000);
+}
+
+</script>
+
+  <script src="app.js"></script>
+</body>
+</html>
