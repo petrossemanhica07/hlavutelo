@@ -272,29 +272,28 @@ function subscribeToComments() {
     }
 
     snapshot.forEach((doc, i) => {
-      const data = doc.data();
-      const ts = data.ts?.toDate ? data.ts.toDate() : new Date();
-      const formattedDate = new Intl.DateTimeFormat('pt-PT', {
-        day: '2-digit', month: '2-digit', year: 'numeric',
-        hour: '2-digit', minute: '2-digit'
-      }).format(ts);
+  const data = doc.data();
+  const ts = data.ts?.toDate ? data.ts.toDate() : new Date();
+  const formattedDate = new Intl.DateTimeFormat('pt-PT', {
+    day: '2-digit', month: '2-digit', year: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  }).format(ts);
 
-      const item = document.createElement('div');
-item.className = 'comment-item ' + (data.isAdmin ? 'comment-right' : 'comment-left');
-item.innerHTML = `
-  <div class="comment-bubble">
-    <strong class="small">${data.name}</strong>
-    <small class="text-muted d-block mb-1">${formattedDate}</small>
-    <p class="mb-0">${data.text}</p>
-  </div>
-`;
-commentsList.appendChild(item);
+  const item = document.createElement('div');
+  item.className = 'comment-item ' + (data.isAdmin ? 'comment-right' : 'comment-left');
+  item.innerHTML = `
+    <div class="comment-bubble">
+      <strong class="small">${data.name}</strong>
+      <small class="text-muted d-block mb-1">${formattedDate}</small>
+      <p class="mb-0">${data.isAdmin ? data.text.replace(/#12345$/, '') : data.text}</p>
+    </div>
+  `;
+  commentsList.appendChild(item);
 
-
-      // animação suave
-      setTimeout(() => item.classList.add('show'), i * 80);
-    });
-  });
+  // animação suave
+  setTimeout(() => item.classList.add('show'), i * 80);
+});
+});
 }
 // rolar automaticamente para o fim
 commentsList.scrollTop = commentsList.scrollHeight;
@@ -304,6 +303,31 @@ document.getElementById('btnComments').addEventListener('click', () => {
   subscribeToComments();
   commentsPanel.show();
 });
+
+// 🔹 Envio de comentário
+document.getElementById('commentForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('commentName').value.trim();
+  const text = document.getElementById('commentText').value.trim();
+  if (!name || !text) return;
+
+  try {
+    await addDoc(collection(db, 'comments'), {
+      name,
+      text,
+      chapter: window.state?.atual || null,
+      ts: serverTimestamp(),
+      isAdmin: name.toLowerCase() === "admin" && text.includes("#12345") // ✅ só vira admin se tiver a senha
+    });
+
+    document.getElementById('commentText').value = '';
+    mostrarMensagem("Comentário enviado com sucesso!", "success");
+  } catch (err) {
+    console.error(err);
+    mostrarMensagem("Erro ao enviar comentário: " + err.message, "danger");
+  }
+});
+
 
 // 🔹 Envio de comentário
 document.getElementById('commentForm').addEventListener('submit', async (e) => {
